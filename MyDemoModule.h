@@ -41,8 +41,13 @@ class MyDemoModule : public DemoModule {
     colors[2] = glm::vec4 ( 0,0,1,1 );
 
     // Create a vertex array object
+#ifdef USE_APPLE_VERTEXARRAYS
     glGenVertexArraysAPPLE( 1, &vao );
     glBindVertexArrayAPPLE( vao );
+#else
+    glGenVertexArrays( 1, &vao );
+    glBindVertexArray( vao );
+#endif
 
     // Create and initialize a buffer object
     glGenBuffers( 1, &buffer );
