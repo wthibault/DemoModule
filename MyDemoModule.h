@@ -73,8 +73,10 @@ class MyDemoModule : public DemoModule {
     glVertexAttribPointer( vColor, 4, GL_FLOAT, GL_FALSE, 0,
 			   (GLvoid *)(sizeof(points)) );
 
-    modelviewMatrixUniformLocation = glGetUniformLocation ( program, "modelviewMatrix" );
-    projectionMatrixUniformLocation = glGetUniformLocation ( program, "projectionMatrix" );
+    modelviewMatrixUniformLocation = 
+      glGetUniformLocation ( program, "modelviewMatrix" );
+    projectionMatrixUniformLocation = 
+      glGetUniformLocation ( program, "projectionMatrix" );
 
     glBindVertexArray ( 0 );
   };
@@ -88,8 +90,10 @@ class MyDemoModule : public DemoModule {
 		      glm::mat4 projection ) {
     glUseProgram ( program );
     glBindVertexArray ( vao );
-    glUniformMatrix4fv( modelviewMatrixUniformLocation, 1, GL_FALSE, glm::value_ptr(modelview) );
-    glUniformMatrix4fv( projectionMatrixUniformLocation, 1, GL_TRUE, glm::value_ptr(projection) );
+    glUniformMatrix4fv( modelviewMatrixUniformLocation, 1, GL_FALSE, 
+			glm::value_ptr(modelview) );
+    glUniformMatrix4fv( projectionMatrixUniformLocation, 1, GL_FALSE, 
+			glm::value_ptr(projection) );
     glDrawArrays( GL_TRIANGLES, 0, numVertices );
     glBindVertexArray ( 0 );
   };
