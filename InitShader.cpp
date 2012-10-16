@@ -1,8 +1,8 @@
-
+#include <GL/glew.h>
+#include <iostream>
+#include <stdlib.h>
 #include <stdio.h>
-#include "Angel.h"
 
-namespace Angel {
 
 // Create a NULL-terminated string by reading the provided file
 static char*
@@ -46,7 +46,7 @@ InitShader(const char* vShaderFile, const char* fShaderFile)
 	s.source = readShaderSource( s.filename );
 	if ( shaders[i].source == NULL ) {
 	    std::cerr << "Failed to read " << s.filename << std::endl;
-	    exit( EXIT_FAILURE );
+	    exit( -1 );
 	}
 
 	GLuint shader = glCreateShader( s.type );
@@ -95,4 +95,3 @@ InitShader(const char* vShaderFile, const char* fShaderFile)
     return program;
 }
 
-}  // Close namespace Angel block

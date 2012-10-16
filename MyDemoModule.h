@@ -59,7 +59,7 @@ class MyDemoModule : public DemoModule {
     glBufferSubData( GL_ARRAY_BUFFER, sizeof(points), sizeof(colors), colors );
 
     // Load shaders and use the resulting shader program
-    program = Angel::InitShader( "MyDemoModule.vert", "MyDemoModule.frag" );
+    program = InitShader( "MyDemoModule.vert", "MyDemoModule.frag" );
     glUseProgram( program );
 
     // set up vertex arrays
