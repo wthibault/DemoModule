@@ -7,33 +7,27 @@
 // Be sure to limit your drawing code in DemoModule and subclasses
 // to gl only.
 
-#if 0
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <GL/glut.h>
-#endif
-#endif
-
-#if 0
-#include "Angel.h"
-#endif
-
-#if 1
+// glm::vec3, glm::vec4, glm::ivec4, glm::mat4
 #include <glm/glm.hpp>
+// glm::translate, glm::rotate, glm::scale, glm::perspective
+#include <glm/gtc/matrix_transform.hpp>
+// glm::value_ptr
+#include <glm/gtc/type_ptr.hpp>
+
 #include <GL/glew.h>
 #include <GL/glut.h>
-#endif
 
 #include "MyDemoModule.h"
 
 DemoModule *module;
+glm::mat4 projectionMatrix;
+glm::mat4 modelviewMatrix;
 
 void display ()
 {
   glClear ( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
   module->update(0.033); // assumes called at 30Hz
-  module->draw();
+  module->draw(modelviewMatrix, projectionMatrix );
   glutSwapBuffers();
 }
 
@@ -46,12 +40,8 @@ void timer ( int delay )
 void reshape (int w, int h)
 {
   glViewport (0, 0, (GLsizei) w, (GLsizei) h); 
-  glMatrixMode (GL_PROJECTION);
-  glLoadIdentity ();
-  gluPerspective(65.0, (GLfloat) w/(GLfloat) h, 1.0, 50.0);
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
-  glTranslatef (0.0, 0.0, -4.0);
+  projectionMatrix = glm::perspective ( 65.0f, (GLfloat) w / (GLfloat) h, 1.0f, 100.0f );
+  modelviewMatrix = glm::translate ( glm::mat4(), glm::vec3(0,0,-4) );
 }
 
 void keyboard (unsigned char key, int x, int y)

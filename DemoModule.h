@@ -18,14 +18,8 @@ class DemoModule {
   };
 
   virtual void update ( float dt ) {};
-  virtual void draw() {
-#if 0
-    glBegin(GL_TRIANGLES);
-    glVertex3f(0,-1,0);
-    glVertex3f(1,1,0);
-    glVertex3f(-1,1,0);
-    glEnd();
-#endif
+  virtual void draw ( glm::mat4 modelview, 
+		      glm::mat4 projection ) {
   };
  private:
 };
